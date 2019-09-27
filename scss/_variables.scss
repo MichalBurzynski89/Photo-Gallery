@@ -1,0 +1,4 @@
+$primary-color: (brighter: rgb(7, 113, 135),
+  darker: rgb(7, 79, 87));
+$brighter: map-get($primary-color, brighter);
+$darker: map-get($primary-color, darker);
