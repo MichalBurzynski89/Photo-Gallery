@@ -1,4 +1,16 @@
 $primary-color: (brighter: rgb(7, 113, 135),
   darker: rgb(7, 79, 87));
+
 $brighter: map-get($primary-color, brighter);
 $darker: map-get($primary-color, darker);
+
+$base-image-width: (W-portrait: 42.5vmin,
+  W-landscape: 30vw);
+$base-image-height: (H-portrait: 37.5vmin,
+  H-landscape: 27.5vw);
+
+$W-portrait: map-get($base-image-width, W-portrait);
+$H-portrait: map-get($base-image-height, H-portrait);
+
+$W-landscape: map-get($base-image-width, W-landscape);
+$H-landscape: map-get($base-image-height, H-landscape);

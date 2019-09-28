@@ -20,6 +20,12 @@
   align-items: $align-items;
 }
 
+@mixin flex-item-dimensions($flex-basis, $height: null, $width: null) {
+  flex-basis: $flex-basis;
+  height: $height;
+  width: $width;
+}
+
 @mixin flashing-animation($delay) {
   animation: flashing 2s ease-in $delay infinite;
 }
