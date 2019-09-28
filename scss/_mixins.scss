@@ -3,3 +3,10 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+@mixin positioning($position: null, $top: null, $left: null, $transform: null) {
+  position: $position;
+  top: $top;
+  left: $left;
+  transform: $transform;
+}
