@@ -1,3 +1,21 @@
+@-webkit-keyframes flashing {
+  25% {
+    opacity: 0;
+  }
+  25.1% {
+    opacity: 1;
+  }
+}
+
+@keyframes flashing {
+  25% {
+    opacity: 0;
+  }
+  25.1% {
+    opacity: 1;
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -76,6 +94,8 @@
   left: 25%;
   -webkit-transform: translate(-75%, -75%);
           transform: translate(-75%, -75%);
+  -webkit-animation: flashing 2s ease-in 1.5s infinite;
+          animation: flashing 2s ease-in 1.5s infinite;
 }
 
 .gallery .gallery__loader .dot:nth-child(2) {
@@ -83,6 +103,8 @@
   left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
+  -webkit-animation: flashing 2s ease-in 1.75s infinite;
+          animation: flashing 2s ease-in 1.75s infinite;
 }
 
 .gallery .gallery__loader .dot:nth-child(3) {
@@ -90,6 +112,8 @@
   left: 75%;
   -webkit-transform: translate(-25%, -75%);
           transform: translate(-25%, -75%);
+  -webkit-animation: flashing 2s ease-in 0s infinite;
+          animation: flashing 2s ease-in 0s infinite;
 }
 
 .gallery .gallery__loader .dot:nth-child(4) {
@@ -97,6 +121,8 @@
   left: 100%;
   -webkit-transform: translate(-100%, -50%);
           transform: translate(-100%, -50%);
+  -webkit-animation: flashing 2s ease-in 0.25s infinite;
+          animation: flashing 2s ease-in 0.25s infinite;
 }
 
 .gallery .gallery__loader .dot:nth-child(5) {
@@ -104,6 +130,8 @@
   left: 75%;
   -webkit-transform: translate(-25%, -25%);
           transform: translate(-25%, -25%);
+  -webkit-animation: flashing 2s ease-in 0.5s infinite;
+          animation: flashing 2s ease-in 0.5s infinite;
 }
 
 .gallery .gallery__loader .dot:nth-child(6) {
@@ -111,6 +139,8 @@
   left: 50%;
   -webkit-transform: translate(-50%, -100%);
           transform: translate(-50%, -100%);
+  -webkit-animation: flashing 2s ease-in 0.75s infinite;
+          animation: flashing 2s ease-in 0.75s infinite;
 }
 
 .gallery .gallery__loader .dot:nth-child(7) {
@@ -118,6 +148,8 @@
   left: 25%;
   -webkit-transform: translate(-75%, -25%);
           transform: translate(-75%, -25%);
+  -webkit-animation: flashing 2s ease-in 1s infinite;
+          animation: flashing 2s ease-in 1s infinite;
 }
 
 .gallery .gallery__loader .dot:nth-child(8) {
@@ -125,5 +157,7 @@
   left: 0;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
+  -webkit-animation: flashing 2s ease-in 1.25s infinite;
+          animation: flashing 2s ease-in 1.25s infinite;
 }
 /*# sourceMappingURL=style.css.map */

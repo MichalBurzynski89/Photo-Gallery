@@ -1,3 +1,5 @@
+@import 'animations';
+
 @mixin reset {
   margin: 0;
   padding: 0;
@@ -9,4 +11,8 @@
   top: $top;
   left: $left;
   transform: $transform;
+}
+
+@mixin flashing-animation($delay) {
+  animation: flashing 2s ease-in $delay infinite;
 }
