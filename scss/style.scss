@@ -19,9 +19,7 @@
   }
 
   .filters {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    @include flexbox(center);
     margin-top: -.75rem;
 
     .filters__item {
@@ -113,10 +111,7 @@
   }
 
   .gallery__images {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
+    @include flexbox(space-between);
     margin: .5rem 0;
 
     .container-image {

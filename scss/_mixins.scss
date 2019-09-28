@@ -13,6 +13,13 @@
   transform: $transform;
 }
 
+@mixin flexbox($justify-content: null, $align-items: null) {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: $justify-content;
+  align-items: $align-items;
+}
+
 @mixin flashing-animation($delay) {
   animation: flashing 2s ease-in $delay infinite;
 }
