@@ -155,11 +155,15 @@
 
         @media (min-width: 533px) {
           @include flex-item-dimensions(65.85%);
-          max-width: 590px;
+          max-width: 595px;
         }
 
         @media (min-width: 768px) {
           @include flex-item-dimensions(66%);
+        }
+
+        @media (min-width: 1200px) {
+          max-width: 590px;
         }
 
         .image {
@@ -186,5 +190,28 @@
 
   .gallery__button {
     @include button;
+
+    .gallery__loader--small {
+      top: 50%;
+      transform: translate(-50%, -50%);
+      height: 1.375rem;
+      width: 1.375rem;
+
+      @media (min-width: 1024px) {
+        height: 2rem;
+        width: 2rem;
+      }
+
+      .dot--small {
+        height: .25rem;
+        width: .25rem;
+        background-color: #fff;
+
+        @media (min-width: 1024px) {
+          height: .375rem;
+          width: .375rem;
+        }
+      }
+    }
   }
 }
