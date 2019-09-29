@@ -19,7 +19,40 @@ window.addEventListener('DOMContentLoaded', async () => {
 
   }
 
-  const displayImages = (images, startIdx, endIdx) => {
+  const handleCloseButtonClick = () => {
+
+    const gallery = document.querySelector('.gallery');
+    const imageZoomOverlay = document.querySelector('.gallery__image-zoom-overlay');
+    gallery.removeChild(imageZoomOverlay);
+
+  }
+
+  const createImageZoom = (src, alt) => {
+
+    const gallery = document.querySelector('.gallery');
+
+    const imageZoomOverlay = document.createElement('div');
+    const container = document.createElement('div');
+    const closeButton = document.createElement('i');
+    const image = document.createElement('img');
+
+    imageZoomOverlay.classList.add('gallery__image-zoom-overlay');
+    container.classList.add('container-image-zoom-overlay');
+    closeButton.className = 'fa fa-times cross-mark';
+    image.className = 'image image--large';
+    image.setAttribute('src', src);
+    image.setAttribute('alt', alt + ' Zoomed-in');
+
+    closeButton.addEventListener('click', handleCloseButtonClick);
+
+    container.appendChild(closeButton);
+    container.appendChild(image);
+    imageZoomOverlay.appendChild(container);
+    gallery.appendChild(imageZoomOverlay);
+
+  }
+
+  const displayImages = (images, startIdx, endIdx = startIdx + 10) => {
 
     const gallery = document.querySelector('.gallery');
 
@@ -48,11 +81,13 @@ window.addEventListener('DOMContentLoaded', async () => {
         container.classList.add('container-image--portrait-version');
       }
 
+      const alt = `Photo Gallery Image #${id}`;
       image.setAttribute('src', url);
-      image.setAttribute('alt', `Photo Gallery Image #${id}`);
+      image.setAttribute('alt', alt);
 
       container.appendChild(provider);
       container.appendChild(image);
+      container.addEventListener('click', createImageZoom.bind(this, url, alt));
       imageCollection.appendChild(container);
 
     }
@@ -64,6 +99,6 @@ window.addEventListener('DOMContentLoaded', async () => {
   const images = await fetchImages(URL);
   console.log(images);
 
-  displayImages(images, 0, 10);
+  displayImages(images, 0);
 
 });
