@@ -26,6 +26,32 @@
   width: $width;
 }
 
+@mixin button {
+  display: block;
+  width: 100%;
+  padding: .5rem 0;
+  border: none;
+  background-color: $darker;
+  color: #fff;
+  font-size: .875rem;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+
+  @media (min-width: 533px) {
+    width: 45%;
+    max-width: 590px;
+    margin: .75rem auto 0;
+    padding: .75rem 0;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 1.125rem 0;
+    font-size: 1rem;
+  }
+}
+
 @mixin flashing-animation($delay) {
   animation: flashing 2s ease-in $delay infinite;
 }
