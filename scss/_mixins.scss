@@ -56,6 +56,13 @@
   }
 }
 
+@mixin image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
 @mixin flashing-animation($delay) {
   animation: flashing 2s ease-in $delay infinite;
 }
