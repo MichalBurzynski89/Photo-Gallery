@@ -21,6 +21,8 @@ window.addEventListener('DOMContentLoaded', async () => {
 
   }
 
+  const images = await fetchImages(URL);
+
   const displayImages = (images, isLoaded = false) => {
 
     if (!images.length || !Array.isArray(images)) throw new Error('Oops, something went wrong...');
@@ -70,10 +72,44 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     const showMoreButton = document.querySelector('.gallery__button');
 
-    isLoaded ? gallery.insertBefore(imageCollection, showMoreButton) : gallery.appendChild(imageCollection);
-    if (startingIndex >= images.length) gallery.removeChild(showMoreButton);
+    isLoaded || showMoreButton ? gallery.insertBefore(imageCollection, showMoreButton) : gallery.appendChild(imageCollection);
+    if (startingIndex >= images.length && showMoreButton !== null) showMoreButton.style.display = 'none';
 
   }
+
+  const filters = [...document.querySelectorAll('.filters__item')];
+
+  const filterImagesByProviderName = images => {
+
+    const activeClass = 'filters__item--is-active';
+    const activeFilter = filters.find(filter => filter.classList.contains(activeClass));
+    if (activeFilter === event.target) return;
+
+    activeFilter.classList.remove(activeClass);
+    event.target.classList.add(activeClass);
+
+    const providerName = event.target.textContent;
+    const filteredImages = images.filter(img => img.providerName === providerName);
+    const imagesToDisplay = filteredImages.length ? filteredImages : images;
+
+    const gallery = document.querySelector('.gallery');
+    [...document.querySelectorAll('.gallery__images')].forEach(collection => gallery.removeChild(collection));
+    const showMoreButton = document.querySelector('.gallery__button');
+    showMoreButton.style.display = 'none';
+
+    const spinner = document.querySelector('.gallery__loader');
+    spinner.style.display = 'block';
+
+    setTimeout(() => {
+      spinner.style.display = 'none';
+      startingIndex = 0;
+      displayImages(imagesToDisplay);
+      if (imagesToDisplay.length > 10) showMoreButton.style.display = 'block';
+    }, 500);
+
+  }
+
+  filters.forEach(filter => filter.addEventListener('click', filterImagesByProviderName.bind(null, images)));
 
   const createShowMoreButton = (addListener, images) => {
 
@@ -114,7 +150,12 @@ window.addEventListener('DOMContentLoaded', async () => {
         button.style.textIndent = '0px';
       }, 500);
 
-      displayImages(images, true);
+      const activeClass = 'filters__item--is-active';
+      const activeFilter = filters.find(filter => filter.classList.contains(activeClass));
+      const filteredImages = images.filter(img => img.providerName === activeFilter.textContent);
+      const imagesToDisplay = filteredImages.length ? filteredImages : images;
+
+      displayImages(imagesToDisplay, true);
 
     });
 
@@ -153,9 +194,6 @@ window.addEventListener('DOMContentLoaded', async () => {
     gallery.removeChild(imageZoomOverlay);
 
   }
-
-  const images = await fetchImages(URL);
-  console.log(images);
 
   displayImages(images);
   createShowMoreButton(addListenerToShowMoreButton, images);
