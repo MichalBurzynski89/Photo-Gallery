@@ -1,6 +1,7 @@
 window.addEventListener('DOMContentLoaded', async () => {
 
   const URL = 'http://www.splashbase.co/api/v1/images/search?query=tree';
+  let startingIndex = 0;
 
   const fetchImages = async url => {
 
@@ -20,14 +21,12 @@ window.addEventListener('DOMContentLoaded', async () => {
 
   }
 
-  const displayImages = (images, startIdx, endIdx = startIdx + 10) => {
+  const displayImages = (images, isLoaded = false) => {
 
     if (!images.length || !Array.isArray(images)) throw new Error('Oops, something went wrong...');
 
-    if (startIdx < 0) {
-      startIdx = 0;
-      endIdx = startIdx + 10;
-    }
+    if (startingIndex < 0) startingIndex = 0;
+    const endIdx = startingIndex + 10;
 
     const gallery = document.querySelector('.gallery');
 
@@ -37,7 +36,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     const imageCollection = document.createElement('div');
     imageCollection.classList.add('gallery__images');
 
-    for (let i = startIdx, j = 1; i < endIdx; i++ , j++) {
+    for (let i = startingIndex, j = 1; i < endIdx; i++ , j++ , startingIndex++) {
 
       if (i >= images.length) break;
       const { id, url, providerName } = images[i];
@@ -69,11 +68,14 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     }
 
-    gallery.appendChild(imageCollection);
+    const showMoreButton = document.querySelector('.gallery__button');
+
+    isLoaded ? gallery.insertBefore(imageCollection, showMoreButton) : gallery.appendChild(imageCollection);
+    if (startingIndex >= images.length) gallery.removeChild(showMoreButton);
 
   }
 
-  const createShowMoreButton = addListener => {
+  const createShowMoreButton = (addListener, images) => {
 
     const gallery = document.querySelector('.gallery');
 
@@ -92,26 +94,28 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     loader.style.display = 'none';
 
-    addListener(button);
+    addListener(button, images);
 
     button.appendChild(loader);
     gallery.appendChild(button);
 
   }
 
-  const addListenerToShowMoreButton = button => {
+  const addListenerToShowMoreButton = (button, images) => {
 
-    button.addEventListener('click', e => {
+    button.addEventListener('click', () => {
       const spinner = document.querySelector('.gallery__loader--small');
-      const isSpinnerActive = spinner.style.display === 'block';
 
-      if (!isSpinnerActive) {
-        spinner.style.display = 'block';
-        e.target.style.textIndent = '-10000px';
-      } else {
+      spinner.style.display = 'block';
+      button.style.textIndent = '-10000px';
+
+      setTimeout(() => {
         spinner.style.display = 'none';
-        e.target.style.textIndent = '0px';
-      }
+        button.style.textIndent = '0px';
+      }, 500);
+
+      displayImages(images, true);
+
     });
 
   }
@@ -153,7 +157,7 @@ window.addEventListener('DOMContentLoaded', async () => {
   const images = await fetchImages(URL);
   console.log(images);
 
-  displayImages(images, 0);
-  createShowMoreButton(addListenerToShowMoreButton);
+  displayImages(images);
+  createShowMoreButton(addListenerToShowMoreButton, images);
 
 });
