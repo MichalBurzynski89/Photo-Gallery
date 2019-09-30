@@ -61,6 +61,7 @@ window.addEventListener('DOMContentLoaded', async () => {
       image.setAttribute('src', url);
       image.setAttribute('alt', alt);
 
+      container.setAttribute('aria-label', 'Zoom-in');
       container.appendChild(provider);
       container.appendChild(image);
       container.addEventListener('click', createImageZoom.bind(null, url, alt));
@@ -121,12 +122,13 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     const imageZoomOverlay = document.createElement('div');
     const container = document.createElement('div');
-    const closeButton = document.createElement('i');
+    const closeButton = document.createElement('button');
     const image = document.createElement('img');
 
     imageZoomOverlay.classList.add('gallery__image-zoom-overlay');
     container.classList.add('container-image-zoom-overlay');
     closeButton.className = 'fa fa-times cross-mark';
+    closeButton.setAttribute('aria-label', 'Close');
     image.className = 'image image--large';
     image.setAttribute('src', src);
     image.setAttribute('alt', alt + ' Zoomed-in');
