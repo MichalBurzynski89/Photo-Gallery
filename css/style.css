@@ -404,6 +404,14 @@
 
 .gallery .gallery__image-zoom-overlay .container-image-zoom-overlay .image--large {
   max-width: 80%;
+  max-height: 50vmin;
+}
+
+@media (orientation: portrait) {
+  .gallery .gallery__image-zoom-overlay .container-image-zoom-overlay .image--large {
+    -webkit-transform: translateY(-10vh);
+            transform: translateY(-10vh);
+  }
 }
 
 @media (orientation: landscape) and (max-width: 823px) {
@@ -415,6 +423,7 @@
 @media (min-width: 1024px) {
   .gallery .gallery__image-zoom-overlay .container-image-zoom-overlay .image--large {
     width: 60%;
+    max-height: 80vh;
   }
 }
 
@@ -426,12 +435,6 @@
   font-size: 1.5rem;
   color: #fff;
   cursor: pointer;
-}
-
-@media (orientation: portrait) {
-  .gallery .gallery__image-zoom-overlay .container-image-zoom-overlay .cross-mark {
-    margin-bottom: -10vh;
-  }
 }
 
 @media (orientation: landscape) and (max-width: 823px) {

@@ -254,6 +254,11 @@
 
       .image--large {
         max-width: 80%;
+        max-height: 50vmin;
+
+        @media (orientation: portrait) {
+          transform: translateY(-10vh);
+        }
 
         @media (orientation: landscape) and (max-width: 823px) {
           max-width: 45%;
@@ -261,6 +266,7 @@
 
         @media (min-width: 1024px) {
           width: 60%;
+          max-height: 80vh;
         }
       }
 
@@ -272,10 +278,6 @@
         font-size: 1.5rem;
         color: #fff;
         cursor: pointer;
-
-        @media (orientation: portrait) {
-          margin-bottom: -10vh;
-        }
 
         @media (orientation: landscape) and (max-width: 823px) {
           width: 45%;
