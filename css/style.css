@@ -211,6 +211,15 @@
   margin: .5rem auto;
 }
 
+@media (min-width: 533px) {
+  .gallery .gallery__images--align-left::after {
+    content: '';
+    -webkit-box-flex: 1;
+        -ms-flex: auto;
+            flex: auto;
+  }
+}
+
 @media (min-width: 1280px) {
   .gallery .gallery__images {
     max-width: 1200px;

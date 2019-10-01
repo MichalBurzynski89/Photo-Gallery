@@ -148,7 +148,7 @@ window.addEventListener('DOMContentLoaded', async () => {
       setTimeout(() => {
         spinner.style.display = 'none';
         button.style.textIndent = '0px';
-      }, 500);
+      }, 250);
 
       const activeClass = 'filters__item--is-active';
       const activeFilter = filters.find(filter => filter.classList.contains(activeClass));
@@ -156,6 +156,11 @@ window.addEventListener('DOMContentLoaded', async () => {
       const imagesToDisplay = filteredImages.length ? filteredImages : images;
 
       displayImages(imagesToDisplay, true);
+      if ((activeFilter.textContent === "show all" && startingIndex === 82)
+        || (activeFilter.textContent === "unsplash" && startingIndex === 56)) {
+        document.querySelector('.gallery__images:last-of-type').classList.add('gallery__images--align-left');
+      }
+      window.scrollTo(0, document.body.scrollHeight);
 
     });
 
