@@ -1,6 +1,6 @@
 window.addEventListener('DOMContentLoaded', async () => {
 
-  const URL = 'http://www.splashbase.co/api/v1/images/search?query=tree';
+  const URL = 'https://www.splashbase.co/api/v1/images/search?query=tree';
   let startingIndex = 0;
 
   const fetchImages = async url => {
